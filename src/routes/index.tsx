@@ -86,7 +86,7 @@ function Index() {
       {/* HEADER */}
       <header className="fixed inset-x-0 top-0 z-50 border-b border-gold/30 bg-cream/85 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-          <a href="#top" className="label-caps text-forest">Alpaca Authors</a>
+          <a href="#top" className="label-caps text-forest">Amelia Scott</a>
           <nav className="hidden items-center gap-8 md:flex">
             {NAV.map(([l, h]) => (
               <a key={h} href={h} className="text-sm text-forest/80 transition hover:text-sage">{l}</a>
