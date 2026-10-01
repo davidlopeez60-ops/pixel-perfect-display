@@ -19,6 +19,18 @@
  */
 
 @theme inline {
+  --font-serif: "Cormorant Garamond", Georgia, serif;
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-sans: "Lora", Georgia, serif;
+  --color-forest: var(--forest);
+  --color-sage: var(--sage);
+  --color-sky: var(--sky);
+  --color-mist: var(--mist);
+  --color-peach: var(--peach);
+  --color-sand: var(--sand);
+  --color-gold: var(--gold);
+  --color-cream: var(--cream);
+  --color-teal: var(--teal);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -62,15 +74,27 @@
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
+  --forest: oklch(0.27 0.035 135);
+  --sage: oklch(0.56 0.07 125);
+  --sky: oklch(0.92 0.017 235);
+  --mist: oklch(0.955 0.01 230);
+  --peach: oklch(0.92 0.035 70);
+  --sand: oklch(0.87 0.06 85);
+  --gold: oklch(0.72 0.11 85);
+  --cream: oklch(0.98 0.008 85);
+  --teal: oklch(0.73 0.05 175);
+  --gradient-dawn: linear-gradient(180deg, var(--sky) 0%, var(--mist) 45%, var(--peach) 100%);
+  --shadow-book: 0 30px 60px -20px color-mix(in oklab, var(--forest) 35%, transparent);
+  --shadow-soft: 0 12px 40px -18px color-mix(in oklab, var(--forest) 25%, transparent);
+  --radius: 0.75rem;
+  --background: var(--cream);
+  --foreground: oklch(0.3 0.025 135);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.129 0.042 264.695);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
+  --primary: var(--forest);
+  --primary-foreground: var(--cream);
   --secondary: oklch(0.968 0.007 247.896);
   --secondary-foreground: oklch(0.208 0.042 265.755);
   --muted: oklch(0.968 0.007 247.896);
@@ -137,8 +161,23 @@
     border-color: var(--color-border);
   }
 
+  html { scroll-behavior: smooth; }
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-size: 1.125rem;
+    line-height: 1.75;
   }
+  h1, h2, h3 { font-family: var(--font-display); color: var(--forest); }
 }
+
+@utility bg-dawn { background-image: var(--gradient-dawn); }
+@utility shadow-book { box-shadow: var(--shadow-book); }
+@utility shadow-soft { box-shadow: var(--shadow-soft); }
+@utility label-caps { font-family: var(--font-sans); font-size: 0.75rem; letter-spacing: 0.3em; text-transform: uppercase; }
+@keyframes float { 0%,100% { transform: translateY(0) } 50% { transform: translateY(-10px) } }
+@utility animate-float { animation: float 7s ease-in-out infinite; }
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 1s ease, transform 1s ease; }
+.reveal.in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; } .animate-float { animation: none; } }
